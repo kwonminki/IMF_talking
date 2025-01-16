@@ -1,0 +1,7 @@
+/mnt/CINELINGO_BACKUP/mingi/anycode/IMF/IMF_talking/IMF_talking/inputs/dataset_symbolic/CelebV_HQ
+/mnt/CINELINGO_BACKUP/mingi/anycode/IMF/IMF_talking/IMF_talking/inputs/dataset_symbolic/CelebV_Text
+/mnt/CINELINGO_BACKUP/mingi/anycode/IMF/IMF_talking/IMF_talking/inputs/dataset_symbolic/VFHQ
+/mnt/CINELINGO_BACKUP/mingi/anycode/IMF/IMF_talking/IMF_talking/inputs/dataset_symbolic/VoxCeleb2
+/mnt/CINELINGO_BACKUP/mingi/anycode/IMF/IMF_talking/IMF_talking/inputs/dataset_symbolic/LRS2
+/mnt/CINELINGO_BACKUP/mingi/anycode/IMF/IMF_talking/IMF_talking/inputs/dataset_symbolic/LRW
+/mnt/CINELINGO_BACKUP/mingi/anycode/IMF/IMF_talking/IMF_talking/inputs/dataset_symbolic/LRS3

@@ -1,0 +1,101 @@
+project_name: "IMF_talking_default_multi4_48frames"
+
+# Model parameters
+model:
+  latent_dim: 32
+  base_channels: 64
+  num_layers: 4
+  use_resnet_feature: False
+  use_mlgffn: False
+# Training parameters
+
+profiling:
+  profile_step: 10
+training:
+
+  load_checkpoint: False  # Set this to true when you want to load from a checkpoint
+  checkpoint_path: '/mnt/CINELINGO_BACKUP/mingi/anycode/IMF/IMF_talking/IMF_talking/outputs/IMF_talking_default_multi4_zero_one/checkpoints/checkpoint_1.pth'
+  use_eye_loss: False
+  use_subsampling: False # saves ram? https://github.com/johndpope/MegaPortrait-hack/issues/41
+  initial_video_repeat: 1
+  final_video_repeat: 1
+  use_ema: False
+  use_r1_reg: False
+  batch_size: 6 #  VRAM 40gb
+  num_epochs: 20
+  save_steps: 5000
+  learning_rate_g: 1.0e-6 # Reduced learning rate for generator
+  initial_learning_rate_d: 1.0e-6 # Set a lower initial learning rate for discriminator
+  # learning_rate_g: 5.0e-4  # Increased learning rate for generator
+  # learning_rate_d: 5.0e-4  # Increased learning rate for discriminator
+  ema_decay: 0.999
+  style_mixing_prob: 0.0
+  noise_magnitude: 0.01
+  final_noise_magnitude: 0.001
+  gradient_accumulation_steps: 1
+  lambda_pixel: 10  # in paper lambda-pixel = 10 Adjust this value as needed
+  lambda_perceptual: 10 # lambda perceptual = 10
+  lambda_eye: 0
+  lambda_adv: 1 # adverserial = 1
+  lambda_gp: 10  # Gradient penalty coefficient
+  lambda_mse: 1.0
+  n_critic: 1  # Number of discriminator updates per generator update
+  clip_grad: True
+  clip_grad_norm: 1.0  # Maximum norm for gradient clipping
+  r1_gamma: 10
+  r1_interval: 16
+  label_smoothing: 0.1
+
+  min_learning_rate_d: 1.0e-6
+  max_learning_rate_d: 1.0e-3
+  d_lr_adjust_frequency: 100  # Adjust D learning rate every 100 steps
+  d_lr_adjust_factor: 2.0  # Factor to increase/decrease D learning rate
+  target_d_loss_ratio: 0.6  # Target ratio of D loss to G loss
+  every_xref_frames: 16
+  use_many_xrefs: False
+  
+  scales: [1, 0.5, 0.25, 0.125]
+  enable_xformers_memory_efficient_attention: True
+
+# Dataset parameters
+dataset:
+  video_folder_list_txt_file: "/mnt/CINELINGO_BACKUP/mingi/anycode/IMF/IMF_talking/IMF_talking/inputs/video_list.txt"
+  target_resolution: [256, 256]
+
+# Checkpointing
+checkpoints:
+  dir: "checkpoints"
+  interval: 10
+
+# Logging and visualization
+logging:
+  log_every: 250
+  sample_every: 100
+  sample_size: 2 # for images on wandb
+  output_dir: "./samples"
+  visualize_every: 100  # Visualize latent tokens every 100 batches
+  print_model_details: False
+
+
+# Accelerator settings
+accelerator:
+  mixed_precision: "no"  # Options: "no", "fp16", "bf16"
+  cpu: false
+  num_processes: 6  # Set to more than 1 for multi-GPU training
+
+# Discriminator parameters
+discriminator:
+  ndf: 64  # Number of filters in the first conv layer
+
+# Optimizer parameters
+optimizer:
+  beta1: 0.5
+  beta2: 0.999
+
+# Loss function
+loss:
+  type: "hinge"  # Changed to Wasserstein loss for WGAN-GP
+  weights:
+      perceptual: [10, 10, 10, 10, 10]
+      equivariance_shift: 10
+      equivariance_affine: 10

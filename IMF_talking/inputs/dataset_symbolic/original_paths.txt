@@ -1,0 +1,7 @@
+/mnt/CINELINGO/VFHQ_mp4/preprocessed_from_png
+/mnt/CINELINGO/CelebV_HQ/processed
+/mnt/CINELINGO/VoxCeleb2/video/dev/mp4
+/mnt/CINELINGO/lrw_lrs/lrs2/mvlrs_v1
+/mnt/CINELINGO/lrw_lrs/lrw/lipread_mp4
+/mnt/CINELINGO/lrw_lrs/LRS3/pretrain
+/mnt/CINELINGO/CelebV_Text/video
